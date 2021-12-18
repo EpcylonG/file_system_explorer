@@ -110,6 +110,7 @@ details>span{
     box-shadow: 0 0 0 1px rgb(0 0 0 / 20%);
     font-size: 14px;
     margin-left: 1em;
+    cursor: pointer;
 }
 
 .btn-create{
