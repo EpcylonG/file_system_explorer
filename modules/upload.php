@@ -38,5 +38,4 @@
         echo "You cannot upload files of this type!";
         header("Location: ../index.php?error=type");
     }
-
 ?>
