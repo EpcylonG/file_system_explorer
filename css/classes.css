@@ -157,13 +157,18 @@ details>span{
     display: flex;
     flex-direction: column;
     border-right: 1px solid #c4c4c4;
+    padding-left: 40px;
+    padding-top: 110px;
 }
 
 .rows-names{
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .rows-names>div{
@@ -174,4 +179,15 @@ details>span{
 .rows-title{
     color: rgba(196, 196, 196, 1);
     border-bottom: 1px solid #c4c4c4;
+}
+
+.file{
+    display: flex;
+    gap: 1em;
+}
+
+.options{
+    display: flex;
+    justify-content: center;
+    transform: rotate(90deg);
 }
