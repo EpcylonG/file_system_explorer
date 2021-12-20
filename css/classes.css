@@ -209,6 +209,7 @@ details>span{
     gap: 0.5em;
     align-self: flex-end;
 /* UPLOAD */
+}
 input[type="file"] {
     display: none;
 }
