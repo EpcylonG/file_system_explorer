@@ -175,3 +175,32 @@ details>span{
     color: rgba(196, 196, 196, 1);
     border-bottom: 1px solid #c4c4c4;
 }
+
+/* Folder Modal */
+.folderModal {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.301);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalContainer {
+    width: 25%;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border-radius: 5px;
+}
+.modalContainer>input {
+    line-height:28px;
+    font-size: 20px;
+}
+.btnContainer {
+    display: flex;
+    gap: 0.5em;
+    align-self: flex-end;
+}
