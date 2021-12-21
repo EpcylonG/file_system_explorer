@@ -47,15 +47,24 @@
     </nav>
     <main class="container">
         <nav class="topnav">
-            <div class="topnav-search">
-                <span class="material-icons">search</span>
-                <input type="search" class="search" placeholder="Search files, folders"/>
-            </div>
-            <div class="topnav-buttons">
-                <button type="button" class="btn btn-create">Create</button>
-                <button type="button" class="btn btn-upload">Upload</button>
-            </div>
-        </nav>
+                <div class="topnav-search">
+                    <span class="material-icons">search</span>
+                    <input type="search" class="search" placeholder="Search files, folders"/>
+                </div>
+                <div class="topnav-buttons">
+                    <button class="btn btn-create">Create</button>
+                    <!-- <button class="btn btn-upload">Upload</button> -->
+                    <form action="./modules/upload.php" method="post" enctype="multipart/form-data" class="upload-form">
+                        <label for="file-upload" class="btn btn-upload">
+                            Upload
+                        </label>
+                        <input id="file-upload" type="file" name="file" onchange='this.form.submit()';/>
+        
+                        <!-- <input type="file" name="file" >
+                        <button type="submit" name="submit">Upload</button> -->
+                    </form>
+                </div>
+            </nav>
         <section class="section">
             <section class="rows">
                 <h1>My Files</h1>
@@ -136,5 +145,17 @@
             </aside>
         </section>
     </main>
+    <div class="alertMessage">
+        <p id="alert">
+            <?php                 
+                if(isset($_GET['error'])){
+                    if ($_GET['error'] == 'size') echo "Your file is too big!";
+                    elseif ($_GET['error'] == 'error') echo "There was an error uploading your file!";
+                    elseif($_GET['error'] == 'type') echo "You cannot upload files of this type!";
+                    elseif ($_GET['uploadsucess']) echo "Your file was successfully uploaded!";
+                }
+            ?>
+        </p>
+    </div>
 </body>
 </html>

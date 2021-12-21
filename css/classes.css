@@ -99,7 +99,11 @@ details>span{
 .search:focus-visible{
     outline: none;
 }
+.topnav-buttons {
+    display: flex;
+    align-items: center;
 
+}
 .btn{
     width: 100px;
     height: 35px;
@@ -110,6 +114,7 @@ details>span{
     box-shadow: 0 0 0 1px rgb(0 0 0 / 20%);
     font-size: 14px;
     margin-left: 1em;
+    cursor: pointer;
 }
 
 .btn-create{
@@ -190,4 +195,54 @@ details>span{
     display: flex;
     justify-content: center;
     transform: rotate(90deg);
+}
+/* Folder Modal */
+.folderModal {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.301);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalContainer {
+    width: 25%;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border-radius: 5px;
+}
+.modalContainer>input {
+    line-height:28px;
+    font-size: 20px;
+}
+.btnContainer {
+    display: flex;
+    gap: 0.5em;
+    align-self: flex-end;
+/* UPLOAD */
+}
+input[type="file"] {
+    display: none;
+}
+
+/* ALERT MESSAGE */
+.alertMessage {
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 50px;
+    left: calc(40% - 150px);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.fadeOut {
+    opacity: 0;
+    transition: all 2s ease-in-out;
 }
