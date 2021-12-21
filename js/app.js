@@ -51,6 +51,7 @@ const alert2 = "There was an error uploading your file!";
 const alert3 = "You cannot upload files of this type!";
 
 if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerText === alert3) {
+    alertDiv.style.display = 'block';
     alertDiv.style.backgroundColor = '#EF4444';
     setTimeout(() => {
         alertDiv.classList.add("fadeOut")
@@ -62,11 +63,42 @@ if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerTe
     }, 2000)
 }
 
-// Show directories
 
-// const mainFolder = document.getElementById('mainFolder');
+// Open audio and video files
 
-// mainFolder.addEventListener('click', async () => {
-//     const res = await fetch("./modules/directories.php");
-//     console.log(res.json());
-// })
+const items = document.querySelectorAll('.rows-info')
+
+items.forEach(item => {
+    item.addEventListener('dblclick', () => {
+        let itemObj = JSON.parse(item.getAttribute('value'))
+        if(itemObj.type == 'wav') {
+            let audio = document.createElement('div')
+            audio.classList.add('folderModal')
+            audio.innerHTML = 
+            `
+            <figure>
+                <figcaption>${itemObj.name}.${itemObj.type} </figcaption>
+                <audio
+                controls
+                src="./root/${itemObj.name}.${itemObj.type}">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+            </figure>
+            `
+            body.appendChild(audio)
+            const modal = document.querySelector('.folderModal');
+            modal.addEventListener('click', closeModal);        
+        }
+    })
+})
+
+// let video = document.createElement('div')
+// video.classList.add('folderModal')
+// video.innerHTML = 
+//     `<video controls width="50%">
+
+//         <source src="./root/Showreel - Ivan Gunchev.mp4">
+
+//     </video>`;
+// body.appendChild(video)

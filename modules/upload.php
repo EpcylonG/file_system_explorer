@@ -17,12 +17,12 @@
     $fileExt = explode(".", $fileName);
     $fileActualExt = strtolower(end($fileExt));
 
-    $allowed = array("doc", "csv", "jpg", "png", "txt", "ppt", "odt", "pdf", "zip", "rar", "exe", "svg", "mp3", "mp4", "avi", "mov");
+    $allowed = array("doc", "csv", "jpg", "png", "txt", "ppt", "odt", "pdf", "zip", "rar", "exe", "svg", "mp3", "wav", "mp4", "avi", "mov");
 
     if (in_array($fileActualExt, $allowed)) {
         // check for errors
         if ($fileError === 0) {
-            if ($fileSize < 500000) {
+            if ($fileSize < 500000000) {
                 $fileDestination = "../root/" . $fileName;
                 move_uploaded_file($fileTmpName ,$fileDestination);
                 header("Location: ../index.php?uploadsucess=1");

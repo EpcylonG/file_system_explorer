@@ -4,6 +4,11 @@ ul {
     margin-left: 10px;
     margin-bottom: 0px;
 }
+figcaption {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
 ul li {
     padding: 5px;
 }
@@ -73,7 +78,10 @@ details>span{
     align-items: center;
     gap: 1em;
 }
-
+.logoLink {
+    text-decoration: none;
+    color: white;
+}
 /* container */
 .container{
     display: flex;
@@ -142,6 +150,7 @@ details>span{
 .section{
     display: flex;
     justify-content: center;
+    max-height: 660px;
 }
 
 .grid{
@@ -174,6 +183,7 @@ details>span{
     border-right: 1px solid #c4c4c4;
     padding-left: 40px;
     padding-top: 110px;
+    overflow-y: scroll;
 }
 
 .rows-names{
@@ -246,7 +256,7 @@ input[type="file"] {
     color: white;
     border-radius: 5px;
     position: absolute;
-    bottom: 50px;
+    top: 100px;
     left: calc(40% - 150px);
     text-align: center;
     padding: 0 20px;

@@ -16,10 +16,12 @@
 <body>
     <nav class="leftbar">
         <!-- <img src="assets/logo.png" alt="Logo" width="150" height="25"> -->
-        <div class="logo">
-            <span class="material-icons">cloud_upload</span>
-            <h1>File Explorer</h1>
-        </div>
+        <a href="./index.php" class='logoLink'>
+            <div class="logo">
+                <span class="material-icons">cloud_upload</span>
+                <h1>File Explorer</h1>
+            </div>
+        </a>
         <div class="leftbar-items">
             <a id="mainFolder" href="./modules/directories.php">
                 <details>
