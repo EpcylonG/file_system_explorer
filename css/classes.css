@@ -1,3 +1,13 @@
+ul {
+    list-style: none;
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+ul li {
+    padding: 5px;
+}
+
 /* leftbar */
 .leftbar{
     width: 222px;
@@ -28,7 +38,7 @@ details>summary {
     gap: 1em;
 }
 details[open]>summary {
-    margin-bottom: 0.7em;
+    /* margin-bottom: 0.7em; */
 }
 summary::-webkit-details-marker {
   display: none

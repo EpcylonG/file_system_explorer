@@ -22,7 +22,7 @@
     if (in_array($fileActualExt, $allowed)) {
         // check for errors
         if ($fileError === 0) {
-            if ($fileSize < 5) {
+            if ($fileSize < 500000) {
                 $fileDestination = "../root/" . $fileName;
                 move_uploaded_file($fileTmpName ,$fileDestination);
                 header("Location: ../index.php?uploadsucess=1");

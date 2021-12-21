@@ -62,3 +62,11 @@ if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerTe
     }, 2000)
 }
 
+// Show directories
+
+// const mainFolder = document.getElementById('mainFolder');
+
+// mainFolder.addEventListener('click', async () => {
+//     const res = await fetch("./modules/directories.php");
+//     console.log(res.json());
+// })

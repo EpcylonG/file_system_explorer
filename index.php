@@ -21,16 +21,19 @@
             <h1>File Explorer</h1>
         </div>
         <div class="leftbar-items">
-            <details>
-                <summary>
-                    <span class="material-icons">description</span>
-                    My Files
-                </summary>
-                <span>
-                    <span class="material-icons">folder</span>
-                    Folders
-                </span>
-            </details>
+            <a id="mainFolder" href="./modules/directories.php">
+                <details>
+                    <summary>
+                        <span class="material-icons">description</span>
+                        My Files
+                    </summary>
+                    <?php
+                        require_once('./modules/directories.php');
+                        listFolderFiles("./root");
+                    ?>
+                    
+                </details>
+            </a>
             <a href="#">
                 <span class="material-icons">schedule</span>
                 Recents
