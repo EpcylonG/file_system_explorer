@@ -9,7 +9,7 @@ function showInformation(e){
     information[0].children[1].setAttribute("src", e.currentTarget.children[0].children[0].getAttribute("src"));
     information[0].children[2].children[1].textContent = file.size + " " + file.sizeText;
     information[0].children[2].children[3].textContent = file.type;
-    information[0].children[2].children[5].textContent = "/" + $(".rows")[0].children[0].textContent;
+    information[0].children[2].children[5].textContent = file.directory;
     information[0].children[2].children[7].textContent = file.created;
     information[0].children[2].children[9].textContent = file.lastModify;
 }
@@ -104,3 +104,28 @@ function displayElement(object, type) {
     const modal = document.querySelector('.folderModal');
     modal.addEventListener('click', closeModal);
 }
+
+// Right click menu
+
+items.forEach(item => {
+    let element;
+    item.addEventListener("contextmenu",function(event){
+        event.preventDefault();
+        let values = JSON.parse(item.getAttribute('value'))
+        var contextElement = document.getElementById("context-menu");
+        contextElement.style.top = event.pageY + "px";
+        contextElement.style.left = event.pageX + "px";
+        contextElement.classList.add("active");
+        element = `${values.name}.${values.type}`
+        console.log(element)
+    });
+    window.addEventListener("click",function(){
+        document.getElementById("context-menu").classList.remove("active");
+    });
+    const deleteButtons = document.querySelectorAll('.deleteFile')
+    deleteButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            console.log("click")
+        })
+    })
+})

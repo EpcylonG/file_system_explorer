@@ -117,17 +117,16 @@
                         );
                         $jsonFile = json_encode($file);
 
-                        ?>
-                        <div class="rows-names rows-info" value='<?=$jsonFile?>'>
-                            <div class="file">
-                                <img src="assets/icons/<?=$extension?>_icon.png" alt="Icon.png" width="30" height="30">
-                                <span><?=$fileName?></span>
-                            </div>
-                            <span><?=$fileSize . " " . $fileSizeText?> </span>
-                            <span><?=$fileLastModify?></span>
-                            <span><?=$fileCreated?></span>
-                            <span class="options">...</span>
-                        </div>
+                        ?>  
+                            <a href="#" class="rows-names rows-info" value='<?=$jsonFile?>'>
+                                <div class="file">
+                                    <img src="assets/icons/<?=$extension?>_icon.png" alt="Icon.png" width="30" height="30">
+                                    <span><?=$fileName?></span>
+                                </div>
+                                <span><?=$fileSize . " " . $fileSizeText?> </span>
+                                <span><?=$fileLastModify?></span>
+                                <span><?=$fileCreated?></span>
+                            </a>
                         <?php
                     }
                 ?>
@@ -162,5 +161,18 @@
             ?>
         </p>
     </div>
+
+
+    <div id="context-menu">
+        <div class="item deleteFile">
+            <a href="#">Delete</a>
+        </div>
+        <hr>
+        <div class="item">
+            <a href="#">Rename</a>
+        </div>
+    </div>
+
+
 </body>
 </html>

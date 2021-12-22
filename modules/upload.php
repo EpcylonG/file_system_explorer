@@ -1,9 +1,5 @@
 <?php
 
-// Check if Submit button has been clicked
-
-// if (isset($_POST["submit"])) { figure out submit button in case we need it
-
     // Get file information
     $file = $_FILES["file"];
 

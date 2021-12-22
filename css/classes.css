@@ -12,7 +12,10 @@ figcaption {
 ul li {
     padding: 5px;
 }
-
+a {
+    text-decoration: none;
+    color: white;
+}
 /* leftbar */
 .leftbar{
     width: 222px;
@@ -62,7 +65,9 @@ details>span{
     align-items: center;
     gap: 0.5em;
 }
-
+.highlight {
+    background-color: #e0e0e0;
+}
 .leftbar-items{
     display: flex;
     flex-direction: column;
@@ -191,11 +196,12 @@ details>span{
     grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
+    padding: 10px 0;
     border-bottom: 1px solid #c4c4c4;
 }
-
+.rows-names:hover {
+    background-color: rgb(245, 245, 245);
+}
 .rows-names>div{
     display: flex;
     align-items: center;
@@ -211,11 +217,6 @@ details>span{
     gap: 1em;
 }
 
-.options{
-    display: flex;
-    justify-content: center;
-    transform: rotate(90deg);
-}
 /* Folder Modal */
 .folderModal {
     position: absolute;
@@ -265,4 +266,48 @@ input[type="file"] {
 .fadeOut {
     opacity: 0;
     transition: all 2s ease-in-out;
+}
+
+a.rows-info {
+    text-decoration: none;
+    color: black;
+}
+
+.infoContainer {
+    display: flex;
+}
+
+/* Right click */
+
+#context-menu {
+    position:fixed;
+    z-index:10000;
+    width:150px;
+    background:#294187;
+    border-radius:5px;
+    transform:scale(0);
+    transform-origin:top left;
+}
+#context-menu.active {
+    transform:scale(1);
+    transition:transform 300ms ease-in-out;
+}
+#context-menu .item {
+    padding:8px 10px;
+    font-size:15px;
+    color:white;
+}
+#context-menu .item:hover {
+    background: #203572;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#context-menu .item i {
+    display:inline-block;
+    margin-right:5px;
+}
+#context-menu hr {
+    margin:2px 0px;
+    border-color:rgb(204, 204, 204);
 }
