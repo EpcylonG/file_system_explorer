@@ -12,7 +12,45 @@ function showInformation(e){
     information[0].children[2].children[5].textContent = "/" + $(".rows")[0].children[0].textContent;
     information[0].children[2].children[7].textContent = file.created;
     information[0].children[2].children[9].textContent = file.lastModify;
+
+    if(file.type == "folder"){
+        $(".folder-name")[0].textContent = file.name;
+        $(".folder-name").attr("value", file.directory + "/" + file.name);
+        openFolder(file.name, file.directory);
+    }
 }
+
+function openFolder(folder, directory){
+    $(".rows-info").remove();
+
+    createAjax(folder, directory);
+    return;
+}
+
+function createAjax(folder, directory){
+    ajax = callAjax("scanFolder", folder, directory);
+    ajax.done(processData);
+}
+
+function callAjax(method, folder, directory){
+    return $.ajax({
+        url: "php/function.php",
+        type: "POST",
+        data: { method:method , folder:folder, directory:directory}
+    });
+}
+
+function processData(response){
+    $(".rows").append(response);
+    $(".rows-info").on("click", showInformation);
+}
+
+
+
+
+
+
+
 
 const body = document.querySelector('body')
 const createBtn =  document.querySelector('.btn-create');
