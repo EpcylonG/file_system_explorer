@@ -14,6 +14,7 @@ function showInformation(e){
     information[0].children[2].children[7].textContent = file.created;
     information[0].children[2].children[9].textContent = file.lastModify;
 }
+
 function navigateFolders(e) {
     const file = JSON.parse(e.currentTarget.getAttribute("value"));
     if(file.type == "folder"){
