@@ -77,7 +77,7 @@
                     <span></span>
                 </div>
                 <?php
-                    require __DIR__ . './php/function.php';
+                    require_once('./php/function.php');
                     scanFolder();
                 ?>
             </section> 

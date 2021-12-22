@@ -135,3 +135,23 @@ function displayElement(object, type) {
     const modal = document.querySelector('.folderModal');
     modal.addEventListener('click', closeModal);
 }
+
+$(".search").on("keyup", findFile)
+const backup = [];
+
+function findFile(e){
+    const directory = Array.from($(".rows-info"));
+    
+    directory.filter(function(element){
+        if(!element.children[0].children[1].textContent.toLowerCase().includes(e.target.value.toLowerCase())){ //to lower
+            backup.push(element);
+            element.remove();
+        } else {
+            backup.filter(function(element){
+                if(element.children[0].children[1].textContent.includes(e.target.value)){
+                    $(".rows").append(element);
+                };
+            });
+        }
+    });
+}
