@@ -108,7 +108,7 @@
                         $fileCreated = date("d-m-Y", filectime($path));
 
                         $file = array(
-                            "name" => $fileName,
+                            "name" => strval($fileName),
                             "size" => $fileSize,
                             "sizeText" => $fileSizeText,
                             "type" => $extension,
@@ -118,7 +118,7 @@
                         $jsonFile = json_encode($file);
 
                         ?>
-                        <div class="rows-names rows-info" value=<?=$jsonFile?>>
+                        <div class="rows-names rows-info" value='<?=$jsonFile?>'>
                             <div class="file">
                                 <img src="assets/icons/<?=$extension?>_icon.png" alt="Icon.png" width="30" height="30">
                                 <span><?=$fileName?></span>

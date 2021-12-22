@@ -67,38 +67,40 @@ if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerTe
 // Open audio and video files
 
 const items = document.querySelectorAll('.rows-info')
-
+const imageFiles = ["jpg", "jpeg", "png"]
+const audioFiles = ["mp3", "wav"]
+const videoFiles = ["mp4", "mov", "avi"]
 items.forEach(item => {
     item.addEventListener('dblclick', () => {
         let itemObj = JSON.parse(item.getAttribute('value'))
-        if(itemObj.type == 'wav') {
-            let audio = document.createElement('div')
-            audio.classList.add('folderModal')
-            audio.innerHTML = 
-            `
-            <figure>
-                <figcaption>${itemObj.name}.${itemObj.type} </figcaption>
-                <audio
-                controls
-                src="./root/${itemObj.name}.${itemObj.type}">
-                    Your browser does not support the
-                    <code>audio</code> element.
-                </audio>
-            </figure>
-            `
-            body.appendChild(audio)
-            const modal = document.querySelector('.folderModal');
-            modal.addEventListener('click', closeModal);        
+        console.log(itemObj)
+        if(audioFiles.includes(itemObj.type)) {
+            displayElement(itemObj, "audio")
+        } else if (videoFiles.includes(itemObj.type)) {
+            displayElement(itemObj, "video")
+        } else if (imageFiles.includes(itemObj.type)) {
+            displayElement(itemObj, "image")
         }
     })
 })
 
-// let video = document.createElement('div')
-// video.classList.add('folderModal')
-// video.innerHTML = 
-//     `<video controls width="50%">
-
-//         <source src="./root/Showreel - Ivan Gunchev.mp4">
-
-//     </video>`;
-// body.appendChild(video)
+function displayElement(object, type) {
+    const element = document.createElement('div')
+    element.classList.add('folderModal')
+    if (type == "image") {
+        element.innerHTML = `<img src="./root/${object.name}.${object.type}" width="300">`;
+    } else if (type == "video") {
+        element.innerHTML = `
+        <video controls width="50%">
+            <source src="./root/${object.name}.${object.type}">
+        </video>`
+    } else if (type == "audio") {
+        element.innerHTML = `
+        <audio controls
+        src="./root/${object.name}.${object.type}">
+        </audio>`
+    }
+    body.appendChild(element);
+    const modal = document.querySelector('.folderModal');
+    modal.addEventListener('click', closeModal);
+}
