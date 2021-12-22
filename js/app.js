@@ -1,8 +1,11 @@
 $(".rows-info").on("click", showInformation);
 
+let fileGlobal ="";
+
 function showInformation(e){
     e.stopPropagation();
     const file = JSON.parse(e.currentTarget.getAttribute("value"));
+    fileGlobal = file;
 
     const information = $(".information");
     information[0].children[0].textContent = file.name;
@@ -63,8 +66,9 @@ function createFolderModal() {
     folderModal.innerHTML =
     `
     <form class="modalContainer" action="./modules/createFolder.php" method="POST">
-        <span>New Folder</span>
-        <input type="text" id="folderName" name="folderName"/>
+        <span>New File/Folder</span>
+        <input type="text" id="folderName" name="fileName"/>
+        <input type="hidden" name="createdir" value="` + $(".folder-name")[0].attributes[1].value + `"/>
         <div class="btnContainer">
             <button id="btn-cancel" class="btn btn-upload">Cancel</button>
             <button name="submit" id="createFolderBtn" class="btn btn-create">Create</button>

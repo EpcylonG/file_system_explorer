@@ -5,9 +5,18 @@
     function scanFolder(){
 
         if(isset($_POST["method"])){
-            if($_POST["directory"] === "./root") $directory = "." . $_POST["directory"] . "/". $_POST["folder"];
-            else $directory = $_POST["directory"] . "/". $_POST["folder"];
-        } else $directory = "./root";
+            if($_POST["directory"] === "./root") {
+                $directory = "." . $_POST["directory"] . "/". $_POST["folder"];
+                $assets = "./assets/";
+            }
+            else {
+                $directory = $_POST["directory"] . "/". $_POST["folder"];
+                $assets = "./assets/";
+            }
+        } else {
+            $directory = "./root";
+            $assets = "assets/";
+        }
 
         $scan = scandir($directory);
         for($i = 2; $i < count($scan); $i++){
@@ -49,7 +58,7 @@
 
             echo "<div class='rows-names rows-info' value='$jsonFile'>" .
                     "<div class='file'>" .
-                        "<img src='assets/icons/" . $extension . "_icon.png' alt='Icon.png' width='30' height='30'>" .
+                        "<img src='" . $assets . "icons/" . $extension . "_icon.png' width='30' height='30'>" .
                         "<span>$fileName</span>" .
                     "</div>" .
                     "<span>" . $fileSize . " " . $fileSizeText . "</span>" .

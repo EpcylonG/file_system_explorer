@@ -63,7 +63,7 @@
             </nav>
         <section class="section">
             <section class="rows">
-                <h1 class="folder-name">My Files</h1>
+                <h1 class="folder-name" value="../root">My Files</h1>
                 <div class="rows-names rows-title">
                     <span>Name</span>
                     <span>Size</span>
