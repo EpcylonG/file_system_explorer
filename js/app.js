@@ -1,9 +1,9 @@
 $(".rows-info").on("click", showInformation);
+$(".rows-info").on("dblclick", navigateFolders);
 
 function showInformation(e){
     e.stopPropagation();
     const file = JSON.parse(e.currentTarget.getAttribute("value"));
-    fileGlobal = file;
 
     const information = $(".information");
     information[0].children[0].textContent = file.name;
@@ -13,12 +13,14 @@ function showInformation(e){
     information[0].children[2].children[5].textContent = file.directory;
     information[0].children[2].children[7].textContent = file.created;
     information[0].children[2].children[9].textContent = file.lastModify;
-
+}
+function navigateFolders(e) {
+    const file = JSON.parse(e.currentTarget.getAttribute("value"));
     if(file.type == "folder"){
         $(".folder-name")[0].textContent = file.name;
         $(".folder-name").attr("value", file.directory + "/" + file.name);
         openFolder(file.name, file.directory);
-    }
+    }   
 }
 
 function openFolder(folder, directory){
@@ -79,22 +81,22 @@ const alertDiv = document.querySelector('.alertMessage');
 const alertP = document.querySelector('#alert');
 
 // Alert messages
-const alert1 = "Your file is too big!";
-const alert2 = "There was an error uploading your file!";
-const alert3 = "You cannot upload files of this type!";
+// const alert1 = "Your file is too big!";
+// const alert2 = "There was an error uploading your file!";
+// const alert3 = "You cannot upload files of this type!";
 
-if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerText === alert3) {
-    alertDiv.style.display = 'block';
-    alertDiv.style.backgroundColor = '#EF4444';
-    setTimeout(() => {
-        alertDiv.classList.add("fadeOut")
-    }, 3000)
-} else if (alertP.innerText == "Your file was successfully uploaded!") {
-    alertDiv.style.backgroundColor = '#22C55E';
-    setTimeout(() => {
-        alertDiv.classList.add("fadeOut")
-    }, 2000)
-}
+// if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerText === alert3) {
+//     alertDiv.style.display = 'block';
+//     alertDiv.style.backgroundColor = '#EF4444';
+//     setTimeout(() => {
+//         alertDiv.classList.add("fadeOut")
+//     }, 3000)
+// } else if (alertP.innerText == "Your file was successfully uploaded!") {
+//     alertDiv.style.backgroundColor = '#22C55E';
+//     setTimeout(() => {
+//         alertDiv.classList.add("fadeOut")
+//     }, 2000)
+// }
 
 // Open audio and video files
 const items = document.querySelectorAll('.rows-info')
