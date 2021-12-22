@@ -115,11 +115,11 @@
 
     <div id="context-menu">
         <div class="item deleteFile">
-            <a href="#">Delete</a>
+            Delete
         </div>
         <hr>
         <div class="item">
-            <a href="#">Rename</a>
+            Rename
         </div>
     </div>
 

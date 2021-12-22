@@ -149,16 +149,34 @@ items.forEach(item => {
         contextElement.style.top = event.pageY + "px";
         contextElement.style.left = event.pageX + "px";
         contextElement.classList.add("active");
-        element = `${values.name}.${values.type}`
+        if (values.type == "folder") {
+            element = values.name
+        } else if (values.type == "unknown"){
+            return;
+        } else {
+            element = `${values.name}.${values.type}`;
+        }
         console.log(element)
+        const deleteButton = document.querySelector('.deleteFile')
+            deleteButton.addEventListener("click", () => {
+                console.log(values.directory + "/" + values.name)
+                deleteNew(values.name, values.directory)
+                // item.remove()
+            })
     });
     window.addEventListener("click",function(){
         document.getElementById("context-menu").classList.remove("active");
     });
-    const deleteButtons = document.querySelectorAll('.deleteFile')
-    deleteButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            console.log("click")
-        })
-    })
 })
+
+function deleteNew(folder, directory){
+    ajax = deleteItem("remove", folder, directory);
+}
+
+function deleteItem(method, name, directory){
+    return $.ajax({
+        url: "./deleteFile.php",
+        type: "POST",
+        data: { method: method, name:name , directory:directory }
+    });
+}
