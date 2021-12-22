@@ -81,19 +81,34 @@
                     <span></span>
                 </div>
                 <?php
+                if(isset($_POST["method"])){
+                    if($_POST["directory"] === "./root") {
+                        $directory = "." . $_POST["directory"] . "/". $_POST["folder"];
+                        $assets = "./assets/";
+                    }
+                    else {
+                        $directory = $_POST["directory"] . "/". $_POST["folder"];
+                        $assets = "./assets/";
+                    }
+                } else {
                     $directory = "./root";
-                    $scan = scandir("./root");
+                    $assets = "assets/";
+                }
+                    $scan = scandir($directory);
                     for($i = 2; $i < count($scan); $i++){
-
                         $path = $directory . "/" . $scan[$i];
                         $info = pathinfo($path);
                         if(isset($info["extension"])){
-                            if(file_exists("./assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];
+                            $extension = "unknown";
+                            if($directory === "./root") {
+                                if(file_exists("./assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];    
+                            }
+                            else if(file_exists("../assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];
                             else $extension = "unknown";
                         } else $extension = "folder";
                         $fileName = $info["filename"];
                         $fileSize = filesize($path);
-
+            
                         $sz = array("0" => "bytes", "1" => "KB", "2" => "MB", "3" => "GB", "4" => "TB");
                         $fileSizeText = $sz[0];
                         $count = 0;
@@ -102,16 +117,17 @@
                             $count++;
                             $fileSizeText = $sz[$count];
                             $fileSize = number_format((float)$operation, 2, '.', '');
-                        }
-                        
+                        }    
                         $fileLastModify = date("d-m-Y", filemtime($path));
                         $fileCreated = date("d-m-Y", filectime($path));
-
+                        $fileDir = $info["dirname"];
+            
                         $file = array(
-                            "name" => strval($fileName),
+                            "name" => $fileName,
                             "size" => $fileSize,
                             "sizeText" => $fileSizeText,
                             "type" => $extension,
+                            "directory" => $fileDir,
                             "created" => $fileCreated,
                             "lastModify" => $fileLastModify,
                         );
