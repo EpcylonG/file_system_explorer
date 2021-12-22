@@ -20,7 +20,7 @@ function navigateFolders(e) {
         $(".folder-name")[0].textContent = file.name;
         $(".folder-name").attr("value", file.directory + "/" + file.name);
         openFolder(file.name, file.directory);
-    }   
+    }
 }
 
 function openFolder(folder, directory){
