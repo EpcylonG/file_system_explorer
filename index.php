@@ -16,21 +16,26 @@
 <body>
     <nav class="leftbar">
         <!-- <img src="assets/logo.png" alt="Logo" width="150" height="25"> -->
-        <div class="logo">
-            <span class="material-icons">cloud_upload</span>
-            <h1>File Explorer</h1>
-        </div>
+        <a href="./index.php" class='logoLink'>
+            <div class="logo">
+                <span class="material-icons">cloud_upload</span>
+                <h1>File Explorer</h1>
+            </div>
+        </a>
         <div class="leftbar-items">
-            <details>
-                <summary>
-                    <span class="material-icons">description</span>
-                    My Files
-                </summary>
-                <span>
-                    <span class="material-icons">folder</span>
-                    Folders
-                </span>
-            </details>
+            <a id="mainFolder" href="./modules/directories.php">
+                <details>
+                    <summary>
+                        <span class="material-icons">description</span>
+                        My Files
+                    </summary>
+                    <?php
+                        require_once('./modules/directories.php');
+                        listFolderFiles("./root");
+                    ?>
+                    
+                </details>
+            </a>
             <a href="#">
                 <span class="material-icons">schedule</span>
                 Recents
@@ -75,7 +80,7 @@
                     require __DIR__ . './php/function.php';
                     scanFolder();
                 ?>
-            </section>
+            </section> 
             <aside class="information">
                 <h2></h2>
                 <img width="100" height="100">

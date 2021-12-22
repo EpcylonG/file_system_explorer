@@ -23,11 +23,11 @@
             $path = $directory . "/" . $scan[$i];
             $info = pathinfo($path);
             if(isset($info["extension"])){
+                $extension = "unknown";
                 if($directory === "./root") {
                     if(file_exists("./assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];    
                 }
                 else if(file_exists("../assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];
-                else $extension = "unknown";
             } else $extension = "folder";
             $fileName = $info["filename"];
             $fileSize = filesize($path);
