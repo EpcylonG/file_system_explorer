@@ -198,6 +198,10 @@ details>span{
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #c4c4c4;
+    cursor: pointer;
+}
+.rows-names:hover {
+    background-color: rgb(245, 245, 245);
 }
 .rows-names:hover {
     background-color: rgb(245, 245, 245);

@@ -1,4 +1,5 @@
 $(".rows-info").on("click", showInformation);
+$(".rows-info").on("dblclick", navigateFolders);
 
 function showInformation(e){
     e.stopPropagation();
@@ -13,6 +14,39 @@ function showInformation(e){
     information[0].children[2].children[7].textContent = file.created;
     information[0].children[2].children[9].textContent = file.lastModify;
 }
+function navigateFolders(e) {
+    const file = JSON.parse(e.currentTarget.getAttribute("value"));
+    if(file.type == "folder"){
+        $(".folder-name")[0].textContent = file.name;
+        $(".folder-name").attr("value", file.directory + "/" + file.name);
+        openFolder(file.name, file.directory);
+    }   
+}
+
+function openFolder(folder, directory){
+    $(".rows-info").remove();
+
+    createAjax(folder, directory);
+    return;
+}
+
+function createAjax(folder, directory){
+    ajax = callAjax("scanFolder", folder, directory);
+    ajax.done(processData);
+}
+
+function callAjax(method, folder, directory){
+    return $.ajax({
+        url: "php/function.php",
+        type: "POST",
+        data: { method:method , folder:folder, directory:directory}
+    });
+}
+
+function processData(response){
+    $(".rows").append(response);
+    $(".rows-info").on("click", showInformation);
+}
 
 const body = document.querySelector('body')
 const createBtn =  document.querySelector('.btn-create');
@@ -25,8 +59,9 @@ function createFolderModal() {
     folderModal.innerHTML =
     `
     <form class="modalContainer" action="./modules/createFolder.php" method="POST">
-        <span>New Folder</span>
-        <input type="text" id="folderName" name="folderName"/>
+        <span>New File/Folder</span>
+        <input type="text" id="folderName" name="fileName"/>
+        <input type="hidden" name="createdir" value="` + $(".folder-name")[0].attributes[1].value + `"/>
         <div class="btnContainer">
             <button id="btn-cancel" class="btn btn-upload">Cancel</button>
             <button name="submit" id="createFolderBtn" class="btn btn-create">Create</button>
@@ -46,26 +81,24 @@ const alertDiv = document.querySelector('.alertMessage');
 const alertP = document.querySelector('#alert');
 
 // Alert messages
-const alert1 = "Your file is too big!";
-const alert2 = "There was an error uploading your file!";
-const alert3 = "You cannot upload files of this type!";
+// const alert1 = "Your file is too big!";
+// const alert2 = "There was an error uploading your file!";
+// const alert3 = "You cannot upload files of this type!";
 
-if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerText === alert3) {
-    alertDiv.style.display = 'block';
-    alertDiv.style.backgroundColor = '#EF4444';
-    setTimeout(() => {
-        alertDiv.classList.add("fadeOut")
-    }, 3000)
-} else if (alertP.innerText == "Your file was successfully uploaded!") {
-    alertDiv.style.backgroundColor = '#22C55E';
-    setTimeout(() => {
-        alertDiv.classList.add("fadeOut")
-    }, 2000)
-}
-
+// if (alertP.innerText === alert1 || alertP.innerText === alert2 || alertP.innerText === alert3) {
+//     alertDiv.style.display = 'block';
+//     alertDiv.style.backgroundColor = '#EF4444';
+//     setTimeout(() => {
+//         alertDiv.classList.add("fadeOut")
+//     }, 3000)
+// } else if (alertP.innerText == "Your file was successfully uploaded!") {
+//     alertDiv.style.backgroundColor = '#22C55E';
+//     setTimeout(() => {
+//         alertDiv.classList.add("fadeOut")
+//     }, 2000)
+// }
 
 // Open audio and video files
-
 const items = document.querySelectorAll('.rows-info')
 const imageFiles = ["jpg", "jpeg", "png"]
 const audioFiles = ["mp3", "wav"]

@@ -58,21 +58,17 @@
                 </div>
                 <div class="topnav-buttons">
                     <button class="btn btn-create">Create</button>
-                    <!-- <button class="btn btn-upload">Upload</button> -->
                     <form action="./modules/upload.php" method="post" enctype="multipart/form-data" class="upload-form">
                         <label for="file-upload" class="btn btn-upload">
                             Upload
                         </label>
                         <input id="file-upload" type="file" name="file" onchange='this.form.submit()';/>
-        
-                        <!-- <input type="file" name="file" >
-                        <button type="submit" name="submit">Upload</button> -->
                     </form>
                 </div>
             </nav>
         <section class="section">
             <section class="rows">
-                <h1>My Files</h1>
+                <h1 class="folder-name" value="../root">My Files</h1>
                 <div class="rows-names rows-title">
                     <span>Name</span>
                     <span>Size</span>
@@ -81,56 +77,10 @@
                     <span></span>
                 </div>
                 <?php
-                    $directory = "./root";
-                    $scan = scandir("./root");
-                    for($i = 2; $i < count($scan); $i++){
-
-                        $path = $directory . "/" . $scan[$i];
-                        $info = pathinfo($path);
-                        if(isset($info["extension"])){
-                            if(file_exists("./assets/icons/" . $info["extension"] . "_icon.png")) $extension = $info["extension"];
-                            else $extension = "unknown";
-                        } else $extension = "folder";
-                        $fileName = $info["filename"];
-                        $fileSize = filesize($path);
-
-                        $sz = array("0" => "bytes", "1" => "KB", "2" => "MB", "3" => "GB", "4" => "TB");
-                        $fileSizeText = $sz[0];
-                        $count = 0;
-                        while($fileSize >= 1000){
-                            $operation = $fileSize/1024;
-                            $count++;
-                            $fileSizeText = $sz[$count];
-                            $fileSize = number_format((float)$operation, 2, '.', '');
-                        }
-                        
-                        $fileLastModify = date("d-m-Y", filemtime($path));
-                        $fileCreated = date("d-m-Y", filectime($path));
-
-                        $file = array(
-                            "name" => strval($fileName),
-                            "size" => $fileSize,
-                            "sizeText" => $fileSizeText,
-                            "type" => $extension,
-                            "created" => $fileCreated,
-                            "lastModify" => $fileLastModify,
-                        );
-                        $jsonFile = json_encode($file);
-
-                        ?>  
-                            <a href="#" class="rows-names rows-info" value='<?=$jsonFile?>'>
-                                <div class="file">
-                                    <img src="assets/icons/<?=$extension?>_icon.png" alt="Icon.png" width="30" height="30">
-                                    <span><?=$fileName?></span>
-                                </div>
-                                <span><?=$fileSize . " " . $fileSizeText?> </span>
-                                <span><?=$fileLastModify?></span>
-                                <span><?=$fileCreated?></span>
-                            </a>
-                        <?php
-                    }
+                    require_once('./php/function.php');
+                    scanFolder();
                 ?>
-            </section>
+            </section> 
             <aside class="information">
                 <h2></h2>
                 <img width="100" height="100">
